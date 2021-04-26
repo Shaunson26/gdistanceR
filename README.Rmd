@@ -1,13 +1,25 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  eval = F
+)
+```
 
 # gdistanceR
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of gdistanceR is to interact with the Google Distance MAtrix
-API.
+The goal of gdistanceR is to interact with the Google Distance MAtrix API.
 
 ## Installation
 
@@ -23,14 +35,13 @@ Install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("Shaunson26/gdistanceR")
 ```
-
 ## Example
 
-``` r
+```{r example}
 library(gdistanceR)
 ```
 
-``` r
+```{r}
 # Return least formatted object from the API call - JSON to list
 rs <- get_distances(origins = 'Liverpool 2170',
                     destinations = 'St Leonards 2065')
@@ -41,7 +52,8 @@ wrs <- wrangle_distances(rs)
 wrs
 ```
 
-``` r
+
+```{r}
 # Return least formatted object from the API call - JSON to list
 rs_multi <- get_distances(origins = c('298 Macquarie Liverpool 2170', 'Campbelltown 2560'),
                     destinations = '1 Reserve Road Leonards 2065')
@@ -51,3 +63,4 @@ wrs_multi <- wrangle_distances(rs_multi)
 
 wrs_multi
 ```
+
