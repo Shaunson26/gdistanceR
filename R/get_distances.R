@@ -25,7 +25,7 @@ get_distances <- function(origins, destinations, departure_time = 'now', .api_ke
   stopifnot(
     "No API key exists in the environmental variable 'google_api' and none was specified for the .api_key parameter" = Sys.getenv('google_api') != '' & missing(.api_key),
     '.outputFormat can be one of only "json" or "xml"' = .output_format %in% c('json', 'xml'),
-    #'departure_time can only be of now or future' = departure_time < Sys.time() & departure_time != 'now',
+    # "departure_time can only be of now or future" = departure_time < Sys.time() & departure_time != 'now',
     'need origins and destinations' = !missing(origins) & !missing(destinations))
   
   # Build query ----
@@ -88,7 +88,8 @@ get_distances <- function(origins, destinations, departure_time = 'now', .api_ke
   } else {
     curl_list$departure_time = departure_time
   }
-    
-
+  
+  class(curl_list) <- c('gDist', class(curl_list))
+   
   curl_list
 }
