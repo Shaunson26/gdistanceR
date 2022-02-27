@@ -47,14 +47,15 @@ get_distances <- function(origins, destinations, departure_time = 'now', .api_ke
   origins <-  paste(gsub(' ', '\\+', origins), collapse = '|')
   destinations <-  paste(gsub(' ', '\\+', destinations), collapse = '|')
   
-  
+  # Get API key
   api_key <- ifelse(missing(.api_key), Sys.getenv('google_api'), .api_key)
   
+  # Build query
   root_url <- 
     paste0('https://maps.googleapis.com/maps/api/distancematrix/',
            .output_format, 
            '?')
-  
+  # query parameter and values
   param_list <-
     list(
       units = 'metric',
@@ -65,11 +66,13 @@ get_distances <- function(origins, destinations, departure_time = 'now', .api_ke
       destinations = destinations
     )
   
+  # collapse list to string
   param_key_value <-
     sapply(names(param_list), function(name){
       paste0(name, '=', param_list[[name]])
     })
   
+  # concatente parameter=value pairs
   api_url_call <-
     paste0(root_url,
            paste(param_key_value, collapse = '&'))
